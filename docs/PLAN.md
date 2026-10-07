@@ -1,6 +1,6 @@
 # studioindi08.com build plan
 
-Status: draft, waiting for approval.
+Status: approved 7 October 2026. Direction B (Signal) chosen.
 
 ## Assumptions
 
@@ -34,14 +34,13 @@ Extras: RSS feed, sitemap, robots.txt, one share image used across the site.
 
 ## Hosting and deployment
 
-- **S3 bucket** holds the built files. Costs pennies.
-- **CloudFront** serves them worldwide over HTTPS with caching. Free tier covers 1 TB a month.
-- **ACM certificate** for studioindi08.com and www. Free.
-- **Route 53 hosted zone** holds the DNS records. About $0.50 a month, the only fixed cost.
-- **GoDaddy** keeps the domain registration. We point its nameservers at Route 53.
-- **GitHub Actions** builds the site and uploads it on every push to `main`. It logs in to AWS with OIDC, so no keys are stored in GitHub. The IAM role can only write to this one bucket and clear this one CloudFront cache.
+Changed on 7 October 2026: GitHub Pages instead of S3 and CloudFront, because the domain was already pointed at GitHub Pages and it costs nothing.
 
-Fallback if the AWS setup feels heavy: AWS Amplify Hosting does the same job with less setup, at a slightly higher cost.
+- **GitHub Pages** stores and serves the built site over HTTPS. Free for a public repository.
+- **GitHub Actions** (`.github/workflows/deploy.yml`) builds the site and publishes it on every push to the live branch.
+- **Route 53 hosted zone** holds the DNS records: A records for studioindi08.com pointing at GitHub Pages, and www pointing at the same place. About $0.50 a month, the only cost.
+- **GoDaddy** keeps the domain registration, with its nameservers pointed at Route 53.
+- The repository must stay public for free Pages hosting, so private files are encrypted before they are committed (see `scripts/encrypt-file.mjs`).
 
 ## Stages and models
 
@@ -52,7 +51,7 @@ Fallback if the AWS setup feels heavy: AWS Amplify Hosting does the same job wit
 | 3 | Scaffold: Eleventy, layouts, base CSS, home page | Sonnet 5.5 | Routine build, fast and cheap |
 | 4 | About, Projects, Contact pages and content | Sonnet 5.5 | Routine build |
 | 5 | Blog, RSS, sign-up form, share image, 404 | Sonnet 5.5 | Routine build |
-| 6 | AWS: S3, CloudFront, ACM, Route 53, IAM role, GitHub Actions | Fable 5.1 | IAM and DNS are where things go quietly wrong |
+| 6 | GitHub Pages deploy workflow, DNS, HTTPS | Sonnet 5.5 | Done. Standard workflow, little to go wrong |
 | 7 | Quality check against the criteria, Lighthouse fixes | Opus 5.5 | Review work |
 | 8 | Maintenance guide | Sonnet 5.5 | Writing |
 
