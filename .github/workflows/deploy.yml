@@ -1,0 +1,49 @@
+# Builds the site and publishes it to GitHub Pages every time code is pushed.
+name: Deploy site
+
+on:
+  push:
+    branches: [claude/bold-dirac-8z2mpk, main]
+  workflow_dispatch:
+
+# The job may only read the code and publish to Pages. Nothing else.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# If two pushes arrive close together, only the latest one deploys.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - name: Install Eleventy
+        run: npm ci
+      - name: Build the site
+        run: npm run build
+      - name: Package the built site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
