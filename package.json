@@ -1,0 +1,14 @@
+{
+  "name": "studioindi08",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Personal site for Indi Gupte, built with Eleventy",
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "eleventy"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.0"
+  }
+}

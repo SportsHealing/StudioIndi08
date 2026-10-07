@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Direction B: Signal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Manrope:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#FFFFFF;--bg-2:#F2F4F8;--text:#121417;--muted:#525A66;--blue:#1F3DE0;--blue-dark:#162CA8;--lime:#D9F26B;--line:#DEE2EA}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Manrope,system-ui,sans-serif;line-height:1.6;font-size:1.05rem}
+h1,h2,h3{font-family:"Space Grotesk",system-ui,sans-serif;font-weight:700;line-height:1.05;margin:0 0 .5rem;letter-spacing:-.02em}
+a{color:var(--blue)}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--blue);outline-offset:3px}
+.wrap{max-width:72rem;margin:0 auto;padding:0 1.25rem}
+header{position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:5}
+header .wrap{display:flex;justify-content:space-between;align-items:center;padding:1rem 1.25rem}
+.brand{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:1.25rem;color:var(--text);text-decoration:none}
+nav ul{list-style:none;margin:0;padding:0;display:flex;gap:.25rem}
+nav a{color:var(--text);text-decoration:none;font-weight:500;font-size:.95rem;padding:.45rem .9rem;border-radius:999px}
+nav a:hover{background:var(--bg-2)}
+nav a[aria-current]{background:var(--text);color:#fff}
+.hero{padding:5rem 0 4rem}
+.hero h1{font-size:clamp(3.2rem,12vw,8rem)}
+.hero h1 mark{background:linear-gradient(transparent 55%,var(--lime) 55%);color:inherit}
+.hero p{max-width:36rem;font-size:1.25rem;color:var(--muted)}
+.btn{display:inline-block;background:var(--blue);color:#fff;padding:.85rem 1.5rem;border-radius:.6rem;text-decoration:none;font-weight:700;border:0;font:inherit;cursor:pointer}
+.btn:hover{background:var(--blue-dark)}
+section{padding:3.5rem 0}
+.row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:1.5rem}
+.row h2{font-size:2rem}
+.grid{display:grid;gap:1.25rem;grid-template-columns:1fr}
+@media (min-width:48rem){.grid{grid-template-columns:repeat(3,1fr)}}
+.card{border:1px solid var(--line);border-radius:1rem;padding:1.5rem;background:var(--bg);transition:transform .15s,box-shadow .15s}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(18,20,23,.08)}
+.card .thumb{aspect-ratio:16/10;border-radius:.6rem;background:var(--bg-2);margin-bottom:1rem}
+.card h3{font-size:1.3rem}
+.card p{color:var(--muted);margin:0 0 .75rem}
+.chip{display:inline-block;font-size:.75rem;font-weight:700;padding:.2rem .6rem;border-radius:999px;background:var(--lime);color:var(--text)}
+.chip.blue{background:#E3E8FB;color:var(--blue-dark)}
+.post{display:grid;gap:1rem;grid-template-columns:1fr}
+@media (min-width:48rem){.post{grid-template-columns:1fr 2fr}}
+.post time{color:var(--muted);font-weight:700}
+.post h3{font-size:1.6rem}
+.band{background:var(--blue);color:#fff;padding:3.5rem 0}
+.band h2{font-size:2.2rem}
+.band p{max-width:36rem;opacity:.9}
+.band form{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.25rem}
+.band label{flex-basis:100%;font-weight:700;font-size:.9rem}
+.band input{flex:1 1 14rem;padding:.85rem 1rem;border:0;border-radius:.6rem;font:inherit}
+.band .btn{background:var(--lime);color:var(--text)}
+footer{padding:2rem 0;color:var(--muted);font-size:.9rem;border-top:1px solid var(--line)}
+@media (max-width:40rem){nav a{padding:.35rem .6rem;font-size:.85rem}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="brand" href="#">Indi Gupte</a>
+  <nav aria-label="Main"><ul><li><a href="#">About</a></li><li><a href="#" aria-current="page">Projects</a></li><li><a href="#">Blog</a></li><li><a href="#">Contact</a></li></ul></nav>
+</div></header>
+
+<div class="wrap">
+<section class="hero">
+  <h1>Indi <mark>Gupte</mark></h1>
+  <p>Student, maker and occasional podcaster. This is where the projects, the writing and the half-finished ideas live.</p>
+  <a class="btn" href="#signup">Join the list</a>
+</section>
+
+<section>
+  <div class="row"><h2>Projects</h2><a href="#">All projects</a></div>
+  <div class="grid">
+    <article class="card"><div class="thumb"></div><h3>Revision timer app</h3><p>A small web app that runs study sprints and tracks streaks.</p><span class="chip blue">Code</span></article>
+    <article class="card"><div class="thumb"></div><h3>Model UN debate podcast</h3><p>Six episodes on how committees really work, with guests from three schools.</p><span class="chip">Media</span></article>
+    <article class="card"><div class="thumb"></div><h3>Short film: Last Bus</h3><p>A nine-minute film shot over one weekend with a borrowed camera.</p><span class="chip">Film</span></article>
+  </div>
+</section>
+
+<section>
+  <div class="row"><h2>Latest post</h2><a href="#">All posts</a></div>
+  <article class="post">
+    <time>3 October 2026</time>
+    <div><h3>What I got wrong about my first project</h3><p>I thought the hard part would be the code. It was deciding what to leave out. Here is what I would do differently, and what I would keep.</p><a href="#">Read the post</a></div>
+  </article>
+</section>
+</div>
+
+<div class="band" id="signup"><div class="wrap">
+  <h2>Get new posts by email</h2>
+  <p>One short email when something new goes up. No spam, unsubscribe any time.</p>
+  <form><label for="e">Email address</label><input id="e" type="email" placeholder="you@example.com"><button class="btn" type="button">Join the list</button></form>
+</div></div>
+
+<div class="wrap"><footer>&copy; 2026 Indi Gupte</footer></div>
+</body>
+</html>

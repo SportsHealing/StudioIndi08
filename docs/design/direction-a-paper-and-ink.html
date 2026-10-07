@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Direction A: Paper and Ink</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#F6F1E9;--paper-2:#EDE5D8;--ink:#1E1B18;--muted:#5E574F;--accent:#B5431F;--accent-soft:#F3D9CC;--rule:#D9D0C2}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,system-ui,sans-serif;line-height:1.65;font-size:1.05rem}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:500;line-height:1.1;margin:0 0 .5rem}
+a{color:var(--accent)}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{max-width:66rem;margin:0 auto;padding:0 1.25rem}
+header{display:flex;justify-content:space-between;align-items:center;padding:1.25rem 0;border-bottom:1px solid var(--rule)}
+.brand{font-family:Fraunces,serif;font-size:1.35rem;color:var(--ink);text-decoration:none;font-weight:700}
+nav ul{list-style:none;margin:0;padding:0;display:flex;gap:1.25rem}
+nav a{color:var(--ink);text-decoration:none;font-weight:500;font-size:.95rem;border-bottom:2px solid transparent}
+nav a:hover,nav a[aria-current]{border-color:var(--accent)}
+.hero{padding:4rem 0 3rem;border-bottom:1px solid var(--rule)}
+.hero h1{font-size:clamp(3rem,10vw,6.5rem);letter-spacing:-.02em}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero p{max-width:34rem;font-size:1.2rem;color:var(--muted)}
+.btn{display:inline-block;background:var(--accent);color:#fff;padding:.8rem 1.4rem;border-radius:999px;text-decoration:none;font-weight:600;border:0;font:inherit;cursor:pointer}
+.btn:hover{background:#9A3617}
+section{padding:3rem 0;border-bottom:1px solid var(--rule)}
+.eyebrow{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 1.5rem;font-weight:600}
+.projects{list-style:none;margin:0;padding:0}
+.projects li{display:grid;grid-template-columns:3rem 1fr;gap:1rem;padding:1.25rem 0;border-top:1px solid var(--rule)}
+.projects li:last-child{border-bottom:1px solid var(--rule)}
+.num{font-family:Fraunces,serif;color:var(--accent);font-size:1.5rem}
+.projects h3{font-size:1.5rem}
+.projects p{margin:0;color:var(--muted)}
+.tag{display:inline-block;font-size:.75rem;background:var(--paper-2);padding:.15rem .6rem;border-radius:999px;margin-top:.5rem;color:var(--ink)}
+.post{max-width:40rem}
+.post time{color:var(--muted);font-size:.9rem}
+.post h3{font-size:1.8rem}
+.signup{background:var(--accent-soft);padding:2.5rem;border-radius:1rem;margin:3rem 0}
+.signup h2{font-size:2rem}
+.signup form{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1rem}
+.signup input{flex:1 1 14rem;padding:.8rem 1rem;border:1px solid var(--muted);border-radius:999px;font:inherit;background:#fff}
+footer{padding:2rem 0;color:var(--muted);font-size:.9rem}
+@media (max-width:40rem){nav ul{gap:.8rem}nav a{font-size:.85rem}.signup{padding:1.5rem}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="brand" href="#">Indi Gupte</a>
+  <nav aria-label="Main"><ul><li><a href="#">About</a></li><li><a href="#" aria-current="page">Projects</a></li><li><a href="#">Blog</a></li><li><a href="#">Contact</a></li></ul></nav>
+</header>
+
+<section class="hero">
+  <h1>Indi <em>Gupte</em></h1>
+  <p>Student, maker and occasional podcaster. This is where the projects, the writing and the half-finished ideas live.</p>
+  <a class="btn" href="#signup">Join the list</a>
+</section>
+
+<section>
+  <p class="eyebrow">Selected projects</p>
+  <ul class="projects">
+    <li><span class="num">01</span><div><h3>Revision timer app</h3><p>A small web app that runs study sprints and tracks streaks.</p><span class="tag">Code</span></div></li>
+    <li><span class="num">02</span><div><h3>Model UN debate podcast</h3><p>Six episodes on how committees really work, with guests from three schools.</p><span class="tag">Media</span></div></li>
+    <li><span class="num">03</span><div><h3>Short film: Last Bus</h3><p>A nine-minute film shot over one weekend with a borrowed camera.</p><span class="tag">Film</span></div></li>
+  </ul>
+</section>
+
+<section>
+  <p class="eyebrow">Latest from the blog</p>
+  <article class="post">
+    <time>3 October 2026</time>
+    <h3>What I got wrong about my first project</h3>
+    <p>I thought the hard part would be the code. It was deciding what to leave out. Here is what I would do differently, and what I would keep.</p>
+    <a href="#">Read the post</a>
+  </article>
+</section>
+
+<div class="signup" id="signup">
+  <h2>Get new posts by email</h2>
+  <p>One short email when something new goes up. No spam, unsubscribe any time.</p>
+  <form><label for="e" class="eyebrow" style="flex-basis:100%;margin:0">Email address</label><input id="e" type="email" placeholder="you@example.com"><button class="btn" type="button">Join the list</button></form>
+</div>
+
+<footer>&copy; 2026 Indi Gupte</footer>
+</div>
+</body>
+</html>

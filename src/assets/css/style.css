@@ -1,0 +1,12 @@
+/* Placeholder styles. Replaced once a visual direction is chosen. */
+:root {
+  --bg: #ffffff;
+  --text: #1a1a1a;
+  --accent: #1f3de0;
+}
+body { margin: 0; font-family: system-ui, sans-serif; color: var(--text); background: var(--bg); line-height: 1.6; }
+.skip-link { position: absolute; left: -999px; }
+.skip-link:focus { left: 1rem; top: 1rem; background: var(--accent); color: #fff; padding: .5rem 1rem; }
+.site-header, main, .site-footer { max-width: 60rem; margin: 0 auto; padding: 1rem; }
+.site-nav ul { list-style: none; padding: 0; display: flex; gap: 1rem; }
+.nav-toggle { display: none; }
