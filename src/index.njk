@@ -3,7 +3,46 @@ title: Home
 description: Projects, writing and news from Indi Gupte.
 layout: layouts/base.njk
 ---
-<section class="hero">
-  <h1>Indi Gupte</h1>
-  <p>Bio coming soon.</p>
+<section class="hero wrap">
+  <h1>Indi <mark>Gupte</mark></h1>
+  <p>[Short introduction coming soon]</p>
+  <a class="btn" href="/about/">About Indi</a>
+</section>
+
+<section class="section wrap" aria-labelledby="projects-heading">
+  <div class="section-head">
+    <h2 id="projects-heading">Projects</h2>
+    <a href="/projects/">All projects</a>
+  </div>
+  <div class="grid">
+    {% for i in [1, 2, 3] %}
+    <article class="card">
+      <div class="thumb" aria-hidden="true"></div>
+      <h3>[Project title]</h3>
+      <p>[One line about this project]</p>
+      <span class="chip">[Type]</span>
+    </article>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="section wrap" aria-labelledby="blog-heading">
+  <div class="section-head">
+    <h2 id="blog-heading">Latest post</h2>
+    <a href="/blog/">All posts</a>
+  </div>
+  <article class="post-teaser">
+    <time datetime="2026-10-07">[Date]</time>
+    <div>
+      <h3>[Post title]</h3>
+      <p class="muted">[First lines of the post]</p>
+    </div>
+  </article>
+</section>
+
+<section class="band" aria-labelledby="signup-heading">
+  <div class="wrap">
+    <h2 id="signup-heading">Email updates</h2>
+    <p>Sign-up coming soon.</p>
+  </div>
 </section>

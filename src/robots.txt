@@ -1,0 +1,3 @@
+User-agent: *
+Disallow: /private/
+Sitemap: https://studioindi08.com/sitemap.xml

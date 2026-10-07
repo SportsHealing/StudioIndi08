@@ -2,3 +2,7 @@ node_modules/
 _site/
 .DS_Store
 .env
+
+# Never commit plain private files. Encrypt them first with scripts/encrypt-file.mjs.
+src/private/*.pdf
+*.pdf

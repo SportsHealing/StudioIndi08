@@ -3,6 +3,8 @@
 export default function (eleventyConfig) {
   // Copy these folders straight to the output without changing them.
   eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
+  eleventyConfig.addPassthroughCopy("src/private/*.enc");
+  eleventyConfig.addPassthroughCopy("src/robots.txt");
 
   // Blog posts: every Markdown file in src/blog, newest first.
   eleventyConfig.addCollection("posts", (api) =>

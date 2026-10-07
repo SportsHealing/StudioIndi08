@@ -1,0 +1,29 @@
+---
+title: Private file
+description: Enter an access code to view a private file.
+layout: layouts/base.njk
+permalink: /private/
+noindex: true
+eleventyExcludeFromCollections: true
+---
+<article class="page wrap">
+  <h1>Private file</h1>
+  <p>This file is for people who have been given an access code.</p>
+
+  <form class="code-form" id="code-form" autocomplete="off">
+    <label for="code">Access code</label>
+    <input id="code" name="code" type="text" inputmode="text" autocapitalize="characters" spellcheck="false" required>
+    <button class="btn" type="submit">Open file</button>
+  </form>
+  <p class="status" id="status" role="status" aria-live="polite"></p>
+
+  <div class="viewer" id="viewer" hidden>
+    <iframe title="Personal statement" src="about:blank"></iframe>
+    <p class="actions">
+      <a class="btn" id="download" href="#" download="indi-gupte-personal-statement.pdf">Download the PDF</a>
+      <span class="muted">If the preview is blank on your phone, use the download button.</span>
+    </p>
+  </div>
+</article>
+
+<script src="/assets/js/private.js" defer></script>
