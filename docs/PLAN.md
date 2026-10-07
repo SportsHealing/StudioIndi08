@@ -1,6 +1,6 @@
 # studioindi08.com build plan
 
-Status: approved 7 October 2026. Direction B (Signal) chosen.
+Status: approved 7 October 2026. Direction A (Paper and Ink) chosen on 7 October 2026, after a first look at B.
 
 ## Assumptions
 
