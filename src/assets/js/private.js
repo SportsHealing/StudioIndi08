@@ -1,12 +1,11 @@
-// Decrypts a file in the browser using the access code the visitor types in.
-// The encrypted file is made by scripts/encrypt-file.mjs. The code itself is never stored anywhere on the site.
+// Decrypts the files on this page in the browser using the access code the visitor types in.
+// Each file is made by scripts/encrypt-file.mjs. The code itself is never stored anywhere on the site.
+// To add a file: encrypt it, then add a <section class="file"> with data-src and data-name in private/index.njk.
 
-const FILE_URL = "/private/statement.enc";
 const form = document.querySelector("#code-form");
 const status = document.querySelector("#status");
 const viewer = document.querySelector("#viewer");
-const frame = viewer.querySelector("iframe");
-const download = document.querySelector("#download");
+const files = Array.from(viewer.querySelectorAll(".file"));
 
 function normalise(code) {
   return code.toUpperCase().replace(/[^A-Z0-9]/g, "");
@@ -23,9 +22,9 @@ async function deriveKey(code, salt) {
   );
 }
 
-async function decryptFile(code) {
-  const response = await fetch(FILE_URL, { cache: "no-store" });
-  if (!response.ok) throw new Error("File not found");
+async function decryptFile(url, code) {
+  const response = await fetch(url, { cache: "no-store" });
+  if (!response.ok) throw new Error("File not found: " + url);
   const bytes = new Uint8Array(await response.arrayBuffer());
   const salt = bytes.slice(4, 20);
   const iv = bytes.slice(20, 32);
@@ -41,14 +40,22 @@ form.addEventListener("submit", async (event) => {
   status.textContent = "Checking the code…";
 
   try {
-    const plain = await decryptFile(code);
-    const url = URL.createObjectURL(new Blob([plain], { type: "application/pdf" }));
-    frame.src = url;
-    download.href = url;
+    // Decrypt every file first. If any fails, nothing is shown.
+    const results = await Promise.all(files.map((file) => decryptFile(file.dataset.src, code)));
+
+    files.forEach((file, i) => {
+      const url = URL.createObjectURL(new Blob([results[i]], { type: "application/pdf" }));
+      file.querySelector("iframe").src = url;
+      const link = file.querySelector("a");
+      link.href = url;
+      link.download = file.dataset.name;
+    });
+
     viewer.hidden = false;
     form.hidden = true;
     status.textContent = "";
-    frame.focus();
+    files[0].querySelector("h2").setAttribute("tabindex", "-1");
+    files[0].querySelector("h2").focus();
   } catch (error) {
     status.className = "status error";
     status.textContent = "That code is not right. Check it and try again.";

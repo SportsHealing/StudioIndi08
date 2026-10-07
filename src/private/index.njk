@@ -8,21 +8,30 @@ eleventyExcludeFromCollections: true
 ---
 <article class="page wrap">
   <h1>Italian Entry</h1>
-  <p>This file is for people who have been given an access code.</p>
+  <p>These files are for people who have been given an access code.</p>
 
   <form class="code-form" id="code-form" autocomplete="off">
     <label for="code">Access code</label>
     <input id="code" name="code" type="text" inputmode="text" autocapitalize="characters" spellcheck="false" required>
-    <button class="btn" type="submit">Open file</button>
+    <button class="btn" type="submit">Open files</button>
   </form>
   <p class="status" id="status" role="status" aria-live="polite"></p>
 
   <div class="viewer" id="viewer" hidden>
-    <iframe title="Italian entry" src="about:blank"></iframe>
-    <p class="actions">
-      <a class="btn" id="download" href="#" download="indi-gupte-italian-entry.pdf">Download the PDF</a>
-      <span class="muted">If the preview is blank on your phone, use the download button.</span>
-    </p>
+    <section class="file" data-src="/private/statement.enc" data-name="indi-gupte-italian-entry.pdf">
+      <h2>Italian entry</h2>
+      <iframe title="Italian entry" src="about:blank"></iframe>
+      <p class="actions"><a class="btn" href="#">Download the PDF</a></p>
+    </section>
+
+    <section class="file" data-src="/private/toolkit.enc" data-name="oxford-personal-statement-toolkit-pages-1-5.pdf">
+      <h2>Personal statement toolkit</h2>
+      <p class="muted">First five pages.</p>
+      <iframe title="Personal statement toolkit, first five pages" src="about:blank"></iframe>
+      <p class="actions"><a class="btn" href="#">Download the PDF</a></p>
+    </section>
+
+    <p class="muted">If a preview is blank on your phone, use its download button.</p>
   </div>
 </article>
 

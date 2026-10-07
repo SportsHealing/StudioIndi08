@@ -274,3 +274,7 @@ img { max-width: 100%; height: auto; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
+
+/* Several files on the Italian Entry page. */
+.viewer .file { margin-bottom: 2.5rem; }
+.viewer .file h2 { font-size: 1.6rem; }
