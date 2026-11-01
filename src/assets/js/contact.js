@@ -9,6 +9,10 @@
   document.getElementById("estimate-text").textContent = text;
   document.getElementById("estimate-box").hidden = false;
 
+  // Puts the estimate into the subject and body of a new email.
+  const email = document.getElementById("email-estimate");
+  email.href += "?subject=" + encodeURIComponent("Website estimate") + "&body=" + encodeURIComponent("Hello Indi,\n\n" + text + "\n\n");
+
   const status = document.getElementById("copy-status");
   document.getElementById("copy-estimate").addEventListener("click", async () => {
     try {

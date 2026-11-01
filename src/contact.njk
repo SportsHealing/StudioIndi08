@@ -1,18 +1,23 @@
 ---
 title: Contact
-description: Get in touch with Indi Gupte.
+description: Get in touch with Indi Gupte by email.
 layout: layouts/page.njk
 permalink: /contact/
 ---
 <section class="estimate-box" id="estimate-box" aria-labelledby="estimate-box-heading" hidden>
   <h2 id="estimate-box-heading">Your website estimate</h2>
-  <p>Please include this in your message.</p>
+  <p>The button below puts this into a new email for you.</p>
   <p class="estimate-text" id="estimate-text"></p>
-  <button type="button" class="btn" id="copy-estimate">Copy estimate</button>
+  <p class="actions">
+    <a class="btn" id="email-estimate" href="mailto:{{ site.email }}">Email this estimate</a>
+    <button type="button" class="btn btn-secondary" id="copy-estimate">Copy estimate</button>
+  </p>
   <p class="status" id="copy-status" role="status" aria-live="polite"></p>
 </section>
 
-<div class="placeholder">Contact details coming soon.</div>
+<p>The best way to reach me is by email. I usually reply within a few days.</p>
+<p class="contact-email"><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+<p class="muted">Asking about a website? Say what you do and what you have already, such as leaflets or an old site. That helps me give you a clear answer.</p>
 
 {% include "partials/packages-data.njk" %}
 <script src="/assets/js/estimate.js" defer></script>

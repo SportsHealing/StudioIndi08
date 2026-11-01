@@ -1,7 +1,7 @@
 {
   "currency": "GBP",
   "checked": "2026-11-01",
-  "status": "draft prices, confirm before publishing",
+  "status": "prices confirmed by Indi on 2026-11-01",
   "packages": [
     {
       "id": "simple",
@@ -45,6 +45,7 @@
     "ai_monthly": {"low": 19, "high": 20},
     "ai_yearly": {"low": 190, "high": 240},
     "domain_yearly": {"low": 10, "high": 20},
-    "hosting": 0
+    "hosting": 0,
+    "github_pro_monthly": {"usd": 4, "gbp_low": 3, "gbp_high": 4}
   }
 }
