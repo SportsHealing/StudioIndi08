@@ -1,0 +1,222 @@
+---
+title: Websites
+description: Website packages from Indi Gupte. Built once, put in accounts you own, and changed by typing to your own AI assistant. No monthly fee.
+layout: layouts/base.njk
+permalink: /websites/
+---
+{%- set rc = packages.running_costs -%}
+{%- macro range(low, high) -%}about {{ low | gbp }}{% if high != low %} to {{ high | gbp }}{% endif %}{%- endmacro -%}
+
+{# 4.1 Top of page #}
+<section class="hero wrap" aria-labelledby="websites-title">
+  <h1 id="websites-title">Websites <em>you own</em></h1>
+  <p class="lede">Built once. Yours to keep. Changed by talking to it.</p>
+  <p class="pitch">I build your website once, put it in accounts you own, and teach you to change it by typing to your own AI assistant. No monthly fee from me.</p>
+
+  <ul class="points">
+    <li><strong>One price, one finish.</strong> Nothing monthly from me.</li>
+    <li><strong>No page limits.</strong> Add as many pages as you like.</li>
+    <li><strong>Your accounts, your passwords.</strong> Nothing held hostage.</li>
+  </ul>
+
+  <p class="actions">
+    <a class="btn" href="#packages">See the packages</a>
+    <a class="btn btn-secondary" href="/contact/">Ask a question</a>
+  </p>
+</section>
+
+{# 4.2 How it works #}
+<section class="section wrap" aria-labelledby="steps-heading">
+  <h2 id="steps-heading">How it works, in five steps</h2>
+  <ol class="steps">
+    <li><strong>Set up.</strong> We sit together while you open three accounts in your own name: GitHub (where your site's files are kept and put online), your AI assistant, and your web address. I link them up.</li>
+    <li><strong>Build.</strong> Send me what you already have: leaflets, price lists, notes. I build the site from your own words.</li>
+    <li><strong>Pick a look.</strong> You see several designs using your real content, and choose one.</li>
+    <li><strong>Check.</strong> We go through agreed rounds of checks: spelling, links, how it looks on a phone.</li>
+    <li><strong>Hand over.</strong> A lesson where you change your own site by typing to your AI, and learn to undo a change.</li>
+  </ol>
+  <p class="muted">After the handover, you are in control. If you ever want my help, buy a block of hours.</p>
+</section>
+
+{# 4.3 The packages #}
+<section class="section wrap" id="packages" aria-labelledby="packages-heading" tabindex="-1">
+  <h2 id="packages-heading">The packages</h2>
+
+  <div class="helper js-only" role="group" aria-labelledby="helper-heading">
+    <h3 id="helper-heading">Which one is for me?</h3>
+    <p class="muted">Press a question to answer yes. Press again to answer no.</p>
+    <div class="helper-buttons">
+      <button type="button" class="toggle" data-helper="old" aria-pressed="false">Do you already have a website you cannot change?</button>
+      <button type="button" class="toggle" data-helper="lots" aria-pressed="false">Will you show lots of products, events or guides?</button>
+    </div>
+    <p class="status" id="helper-status" role="status" aria-live="polite"></p>
+  </div>
+
+  <ul class="cards">
+    {% for pkg in packages.packages %}
+    <li class="card{% if pkg.popular %} is-popular{% endif %}" data-package="{{ pkg.id }}">
+      <p class="suggested" hidden>Suggested for you</p>
+      {% if pkg.popular %}<p class="badge">Most popular</p>{% endif %}
+      <h3>{{ pkg.name }}</h3>
+      {% if pkg.price_options %}
+      <p class="price">From {{ pkg.price_options[0].price | gbp }}</p>
+      <ul class="price-options">
+        {% for opt in pkg.price_options %}<li>{{ opt.label }}: {{ opt.price | gbp }}</li>{% endfor %}
+      </ul>
+      {% else %}
+      <p class="price">{{ pkg.price | gbp }}</p>
+      {% endif %}
+      <p class="for"><strong>For:</strong> {{ pkg.for }}</p>
+      <p class="includes-label">What you get</p>
+      <ul class="includes">
+        {% for item in pkg.includes %}<li>{{ item }}</li>{% endfor %}
+      </ul>
+      <button type="button" class="btn btn-secondary js-only" data-choose="{{ pkg.id }}">Choose this<span class="visually-hidden">: {{ pkg.name }}</span></button>
+    </li>
+    {% endfor %}
+  </ul>
+
+  <h3 class="extras-heading">Extras</h3>
+  <ul class="extras">
+    {% for extra in packages.extras %}
+    <li><strong>{{ extra.name }}</strong> {{ extra.price | gbp }}<span class="muted">, {{ extra.note }}</span></li>
+    {% endfor %}
+  </ul>
+  <p class="muted small">Offers apply to the package only, never to extras. Offers do not combine. You pay half to book and half at handover.</p>
+</section>
+
+{# 4.4 Your estimate #}
+<section class="section wrap" aria-labelledby="estimate-heading">
+  <h2 id="estimate-heading" tabindex="-1">Your estimate</h2>
+  <noscript><p>Turn on JavaScript to work out a total here. All the prices are listed in the packages above.</p></noscript>
+
+  <div class="estimate js-only">
+    <form id="estimator" class="estimator">
+      <fieldset>
+        <legend>Package</legend>
+        {% for pkg in packages.packages %}
+        <label class="choice"><input type="radio" name="package" value="{{ pkg.id }}"{% if loop.first %} checked{% endif %}> {{ pkg.name }}</label>
+        {% endfor %}
+      </fieldset>
+
+      <fieldset id="rescue-choice" hidden>
+        <legend>How old or complex is it?</legend>
+        {% for pkg in packages.packages %}{% if pkg.price_options %}{% for opt in pkg.price_options %}
+        <label class="choice"><input type="radio" name="rescue" value="{{ opt.id }}"{% if loop.first %} checked{% endif %}> {{ opt.label }} ({{ opt.price | gbp }})</label>
+        {% endfor %}{% endif %}{% endfor %}
+      </fieldset>
+
+      <fieldset>
+        <legend>Extras</legend>
+        <p class="muted small" id="extras-hint">Pick one block of hours at most.</p>
+        {% for extra in packages.extras %}
+        <label class="choice"><input type="checkbox" name="extras" value="{{ extra.id }}"{% if extra.excludes %} data-excludes="{{ extra.excludes | join(',') }}" aria-describedby="extras-hint"{% endif %}> {{ extra.name }} ({{ extra.price | gbp }})</label>
+        {% endfor %}
+      </fieldset>
+
+      <div class="field">
+        <label for="offer">Offers</label>
+        <p class="muted small" id="offer-hint">Offers do not combine, so pick one.</p>
+        <select id="offer" name="offer" aria-describedby="offer-hint">
+          {% for offer in packages.offers %}
+          <option value="{{ offer.id }}">{{ offer.name }}{% if offer.type == "percent" %} ({{ offer.value }}% off the package){% elif offer.type == "fixed" %} ({{ offer.value | gbp }} off){% endif %}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </form>
+
+    <div class="result" aria-live="polite">
+      <h3>Your total</h3>
+      <dl>
+        <div><dt>Package</dt><dd data-out="package">-</dd></div>
+        <div><dt>Offer</dt><dd data-out="offer">-</dd></div>
+        <div><dt>Extras</dt><dd data-out="extras">-</dd></div>
+        <div class="total"><dt>Total</dt><dd data-out="total">-</dd></div>
+      </dl>
+      <p><strong>Pay half to book, half at handover.</strong></p>
+      <dl>
+        <div><dt>To book</dt><dd data-out="deposit">-</dd></div>
+        <div><dt>At handover</dt><dd data-out="handover">-</dd></div>
+      </dl>
+      <p class="muted small">The web address is charged at its cost plus £40. I confirm the exact cost when we speak.</p>
+      <a class="btn" id="send-estimate" href="/contact/">Send me this estimate</a>
+    </div>
+  </div>
+</section>
+
+{# 4.5 Running costs #}
+<section class="section wrap" aria-labelledby="costs-heading">
+  <h2 id="costs-heading">Running costs, paid by you to them, not to me</h2>
+
+  <div class="period js-only" role="group" aria-label="Show running costs">
+    <button type="button" class="toggle" data-period="monthly" aria-pressed="true">Monthly</button>
+    <button type="button" class="toggle" data-period="yearly" aria-pressed="false">Yearly</button>
+  </div>
+
+  <div class="table-wrap">
+    <table class="costs" id="costs-table">
+      <caption class="visually-hidden">Running costs, monthly and yearly</caption>
+      <thead>
+        <tr><th scope="col">Item</th><th scope="col" class="col-monthly">Monthly</th><th scope="col" class="col-yearly">Yearly</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">Your AI assistant (Claude Pro, ChatGPT Plus or Google AI Pro)</th>
+          <td class="col-monthly">{{ range(rc.ai_monthly.low, rc.ai_monthly.high) }}</td>
+          <td class="col-yearly">{{ range(rc.ai_yearly.low, rc.ai_yearly.high) }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Your web address</th>
+          <td class="col-monthly">n/a</td>
+          <td class="col-yearly">{{ range(rc.domain_yearly.low, rc.domain_yearly.high) }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Hosting on GitHub Pages (the free service that keeps your site online)</th>
+          <td class="col-monthly">{{ rc.hosting | gbp }}</td>
+          <td class="col-yearly">{{ rc.hosting | gbp }}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th scope="row">Total</th>
+          <td class="col-monthly">about {{ (rc.ai_monthly.high + rc.hosting) | gbp }}</td>
+          <td class="col-yearly">{{ range(rc.ai_yearly.low + rc.domain_yearly.low + rc.hosting, rc.ai_yearly.high + rc.domain_yearly.high + rc.hosting) }}</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <ul class="tips">
+    <li>Already pay for an AI assistant? Use the same one.</li>
+    <li>Pay monthly and pause in quiet months, or pay yearly to save about two months.</li>
+    <li>Cheaper and free AI plans exist, but may not be able to edit a website. I test before recommending one.</li>
+  </ul>
+  <p class="muted small">Prices checked on {{ packages.checked | readableDate }}, including VAT. They change, so check before signing up.</p>
+</section>
+
+{# 4.6 Questions and answers #}
+<section class="section wrap" aria-labelledby="faq-heading">
+  <h2 id="faq-heading">Questions and answers</h2>
+  <div class="faq">
+    <details><summary>Is there a limit on pages?</summary><p>No. Add as many as you need.</p></details>
+    <details><summary>Do I need to be technical?</summary><p>No. If you can describe a change in a sentence, you can make it.</p></details>
+    <details><summary>What if the AI gets something wrong?</summary><p>Every old version is kept. You can undo any change, and I show you how.</p></details>
+    <details><summary>Who opens the accounts?</summary><p>You do, with me beside you. That keeps every password and bill in your name. The setup is included in the price.</p></details>
+    <details><summary>Can other people see my website's files?</summary><p>Yes, on GitHub's free plan, just as they can see the website itself. Nothing private goes in them. If you would rather keep the files hidden, GitHub's paid Pro plan allows it, at a small monthly cost paid by you.</p></details>
+    <details><summary>Can you take payments on my site?</summary><p>Not with this kind of site. For an online shop, I will point you to a better option.</p></details>
+    <details><summary>What if I want help later?</summary><p>Buy a block of hours. Use them when you like within 12 months. Nothing renews by itself.</p></details>
+    <details><summary>Can I leave?</summary><p>There is nothing to leave. Everything is already yours.</p></details>
+  </div>
+</section>
+
+{# 4.7 Closing call to action #}
+<div class="wrap">
+  <section class="signup" aria-labelledby="ready-heading">
+    <h2 id="ready-heading">Ready to own your website?</h2>
+    <a class="btn" href="/contact/">Get in touch</a>
+  </section>
+</div>
+
+{% include "partials/packages-data.njk" %}
+<script src="/assets/js/estimate.js" defer></script>
+<script src="/assets/js/websites.js" defer></script>

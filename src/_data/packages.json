@@ -1,0 +1,50 @@
+{
+  "currency": "GBP",
+  "checked": "2026-11-01",
+  "status": "draft prices, confirm before publishing",
+  "packages": [
+    {
+      "id": "simple",
+      "name": "Simple site",
+      "price": 500,
+      "for": "A few pages: who you are, what you do, where to find you.",
+      "includes": ["Setup of your three accounts", "Build from your own words", "Several designs to choose from", "Rounds of checks", "Handover lesson"]
+    },
+    {
+      "id": "bigger",
+      "name": "Bigger site",
+      "price": 1000,
+      "for": "Catalogues, guide libraries, events, many sections.",
+      "includes": ["Everything in the simple site", "Search or filters where they help", "An extra round of checks", "A longer handover lesson"]
+    },
+    {
+      "id": "rescue",
+      "name": "Rescue an old site",
+      "price_options": [
+        {"id": "rescue-simple", "label": "Simple brochure", "price": 200},
+        {"id": "rescue-mid", "label": "In between", "price": 500},
+        {"id": "rescue-complex", "label": "Old system with many pages", "price": 1000}
+      ],
+      "for": "A site you can no longer change, moved into accounts you own.",
+      "includes": ["A copy of every page and file", "Old links keep working", "Web address moved to your account", "Handover lesson"]
+    }
+  ],
+  "extras": [
+    {"id": "domain", "name": "Web address set up for a year", "price": 40, "note": "plus the cost of the address"},
+    {"id": "5h", "name": "Block of 5 hours", "price": 250, "note": "use within 12 months", "excludes": ["10h"]},
+    {"id": "10h", "name": "Block of 10 hours", "price": 450, "note": "use within 12 months", "excludes": ["5h"]}
+  ],
+  "offers": [
+    {"id": "none", "name": "None", "type": "none", "value": 0},
+    {"id": "founding", "name": "First three customers", "type": "percent", "value": 30},
+    {"id": "charity", "name": "Community group or charity", "type": "percent", "value": 20},
+    {"id": "referred", "name": "Recommended by a customer", "type": "fixed", "value": 50}
+  ],
+  "payment": {"deposit_percent": 50, "rest": "at handover"},
+  "running_costs": {
+    "ai_monthly": {"low": 19, "high": 20},
+    "ai_yearly": {"low": 190, "high": 240},
+    "domain_yearly": {"low": 10, "high": 20},
+    "hosting": 0
+  }
+}

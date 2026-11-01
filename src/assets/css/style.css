@@ -68,7 +68,7 @@ h3 { font-size: 1.5rem; }
 p { margin: 0 0 1rem; }
 a { color: var(--accent); }
 a:hover { color: var(--accent-dark); }
-a:focus-visible, button:focus-visible, input:focus-visible {
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, summary:focus-visible, [tabindex="-1"]:focus-visible {
   outline: 3px solid var(--accent);
   outline-offset: 3px;
 }
@@ -182,6 +182,12 @@ img { max-width: 100%; height: auto; }
   cursor: pointer;
 }
 .btn:hover { background: var(--accent-dark); color: #fff; }
+.btn-secondary {
+  background: transparent;
+  color: var(--ink);
+  box-shadow: inset 0 0 0 2px var(--ink);
+}
+.btn-secondary:hover { background: var(--ink); color: var(--paper); }
 
 /* Numbered project list ------------------------------------------------- */
 .projects { list-style: none; margin: 0; padding: 0; }
@@ -278,3 +284,151 @@ img { max-width: 100%; height: auto; }
 /* Several files on the Italian Entry page. */
 .viewer .file { margin-bottom: 2.5rem; }
 .viewer .file h2 { font-size: 1.6rem; }
+
+/* Shared helpers ------------------------------------------------------- */
+.small { font-size: 0.9rem; }
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+/* Parts that only work with JavaScript stay hidden when it is off. */
+html:not(.js) .js-only { display: none !important; }
+.teaser p:not(.eyebrow) { max-width: 36rem; }
+
+/* Websites page --------------------------------------------------------- */
+.lede { font-family: var(--font-head); font-style: italic; font-size: 1.4rem; color: var(--ink); }
+.hero .pitch { color: var(--ink); }
+.actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 1.5rem 0 0; }
+.points, .steps, .cards, .extras, .includes, .price-options, .tips { margin: 0; padding: 0; }
+.points { list-style: none; display: grid; gap: 0.75rem; margin-top: 1.5rem; }
+.points li { background: var(--paper-2); border-radius: var(--radius); padding: 1rem 1.25rem; }
+.points strong { display: block; font-family: var(--font-head); font-weight: 600; font-size: 1.15rem; }
+
+.steps { list-style: none; counter-reset: step; display: grid; gap: 0.75rem; margin: 1.5rem 0; }
+.steps li {
+  counter-increment: step;
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem 1rem 3.75rem;
+}
+.steps li::before {
+  content: counter(step);
+  position: absolute;
+  left: 1.25rem;
+  top: 0.9rem;
+  font-family: var(--font-head);
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--accent);
+}
+.steps strong { display: block; }
+
+.helper { background: var(--paper-2); border-radius: var(--radius); padding: 1.25rem; margin: 1.5rem 0; }
+.helper h3 { font-size: 1.3rem; }
+.helper-buttons, .period { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+.toggle {
+  font: inherit;
+  text-align: left;
+  background: #fff;
+  color: var(--ink);
+  border: 2px solid var(--muted);
+  border-radius: 0.75rem;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+}
+.toggle::before { content: "No: "; font-weight: 600; }
+.toggle[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.toggle[aria-pressed="true"]::before { content: "Yes: "; }
+.period .toggle::before { content: none; }
+.helper .status { margin: 0.75rem 0 0; min-height: 0; }
+
+.cards { list-style: none; display: grid; gap: 1rem; margin: 1.5rem 0 2rem; }
+.card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+}
+.card.is-suggested { outline: 3px solid var(--accent); outline-offset: -1px; }
+.card .suggested, .card .badge {
+  align-self: flex-start;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 0.15rem 0.7rem;
+  margin-bottom: 0.75rem;
+}
+.price { font-family: var(--font-head); font-size: 2rem; line-height: 1.1; margin: 0.25rem 0 0.75rem; }
+.price-options { list-style: none; margin-bottom: 1rem; color: var(--muted); font-size: 0.95rem; }
+.includes-label { font-weight: 600; margin: 0 0 0.25rem; }
+.includes { padding-left: 1.2rem; margin-bottom: 1.25rem; }
+.card .btn { margin-top: auto; align-self: flex-start; }
+
+.extras-heading { font-size: 1.3rem; }
+.extras { list-style: none; display: grid; gap: 0.5rem; margin-bottom: 1rem; }
+.extras li { border-top: 1px solid var(--rule); padding-top: 0.5rem; }
+
+.estimate { display: grid; gap: 1.5rem; margin-top: 1.5rem; }
+.estimator fieldset { border: 1px solid var(--rule); border-radius: var(--radius); padding: 1rem 1.25rem; margin: 0 0 1rem; }
+.estimator legend { font-weight: 600; padding: 0 0.25rem; }
+.choice { display: flex; align-items: flex-start; gap: 0.6rem; padding: 0.3rem 0; cursor: pointer; }
+.choice input { width: 1.2rem; height: 1.2rem; margin: 0.25rem 0 0; accent-color: var(--accent); flex-shrink: 0; }
+.field label { display: block; font-weight: 600; }
+.field select {
+  font: inherit;
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--muted);
+  border-radius: 0.75rem;
+  background: #fff;
+  color: var(--ink);
+}
+.result { background: var(--accent-soft); border-radius: var(--radius); padding: 1.5rem; align-self: start; }
+.result h3 { font-size: 1.5rem; }
+.result dl { margin: 0 0 1rem; }
+.result dl div { display: flex; justify-content: space-between; gap: 1rem; padding: 0.35rem 0; border-bottom: 1px solid rgba(30, 27, 24, 0.15); }
+.result dt { font-weight: 500; }
+.result dd { margin: 0; font-weight: 600; text-align: right; }
+.result .total { font-size: 1.3rem; border-bottom: 2px solid var(--ink); }
+
+.period { margin: 1rem 0; }
+.table-wrap { overflow-x: auto; }
+.costs { width: 100%; border-collapse: collapse; margin: 1rem 0 1.5rem; }
+.costs th, .costs td { text-align: left; padding: 0.7rem 0.5rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+.costs td { white-space: nowrap; }
+.costs tbody th { font-weight: 400; }
+.costs tfoot th, .costs tfoot td { font-weight: 700; border-bottom: 2px solid var(--ink); }
+.costs[data-show="monthly"] .col-yearly, .costs[data-show="yearly"] .col-monthly { display: none; }
+.tips { padding-left: 1.2rem; margin-bottom: 1rem; }
+
+.faq details { border-top: 1px solid var(--rule); padding: 0.9rem 0; }
+.faq details:last-child { border-bottom: 1px solid var(--rule); }
+.faq summary { cursor: pointer; font-weight: 600; font-size: 1.1rem; }
+.faq details p { margin: 0.6rem 0 0; max-width: 40rem; }
+
+/* Estimate shown on the Contact page. */
+.estimate-box { background: var(--accent-soft); border-radius: var(--radius); padding: 1.5rem; margin-bottom: 2rem; }
+.estimate-box h2 { font-size: 1.6rem; }
+.estimate-text { white-space: pre-line; background: #fff; border-radius: 0.75rem; padding: 1rem; }
+
+@media (min-width: 45rem) {
+  .points { grid-template-columns: repeat(3, 1fr); }
+  .cards { grid-template-columns: repeat(3, 1fr); }
+  .card { padding: 1.25rem; }
+}
+@media (min-width: 60rem) {
+  .steps { grid-template-columns: repeat(5, 1fr); }
+  .steps li { padding: 3.25rem 1rem 1rem; }
+  .steps li::before { left: 1rem; }
+  .estimate { grid-template-columns: 3fr 2fr; align-items: start; }
+  .result { position: sticky; top: 1rem; }
+}

@@ -1,0 +1,19 @@
+---
+title: Contact
+description: Get in touch with Indi Gupte.
+layout: layouts/page.njk
+permalink: /contact/
+---
+<section class="estimate-box" id="estimate-box" aria-labelledby="estimate-box-heading" hidden>
+  <h2 id="estimate-box-heading">Your website estimate</h2>
+  <p>Please include this in your message.</p>
+  <p class="estimate-text" id="estimate-text"></p>
+  <button type="button" class="btn" id="copy-estimate">Copy estimate</button>
+  <p class="status" id="copy-status" role="status" aria-live="polite"></p>
+</section>
+
+<div class="placeholder">Contact details coming soon.</div>
+
+{% include "partials/packages-data.njk" %}
+<script src="/assets/js/estimate.js" defer></script>
+<script src="/assets/js/contact.js" defer></script>

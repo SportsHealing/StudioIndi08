@@ -22,6 +22,9 @@ export default function (eleventyConfig) {
     new Date(value).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })
   );
 
+  // Turns 1000 into "£1,000". Whole pounds only.
+  eleventyConfig.addFilter("gbp", (value) => "£" + Math.round(value).toLocaleString("en-GB"));
+
   return {
     dir: {
       input: "src",
